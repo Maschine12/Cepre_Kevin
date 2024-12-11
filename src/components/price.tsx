@@ -10,7 +10,7 @@ interface PriceProps {
 
 const PriceComponent: React.FC<PriceProps> = ({ price, tipoPago, title, description }) => {
     return (
-        <div className="flex flex-col p-7 mx-auto max-w-lg text-center text-gray-900 bg-[#F1F2F2] rounded-lg border shadow">
+        <div className="flex flex-col p-5  text-center text-gray-900 bg-[#F1F2F2] rounded-lg border shadow">
             <h3 className="mb-4 text-2xl font-semibold ">{title}</h3>
             <p className="font-light text-gray-500 sm:text-lg">{description}</p>
             <div className="flex justify-center items-baseline my-8">

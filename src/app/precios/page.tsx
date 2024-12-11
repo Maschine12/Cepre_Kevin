@@ -2,6 +2,7 @@
 import React from 'react'
 import PriceComponent from "@/components/price"
 import Button from '@/components/ui/buton'
+
 function PreciosPage() {
   return (
     <>
@@ -12,13 +13,10 @@ function PreciosPage() {
               <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Precios</h2>
               <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Aqui podra ver los precios</p>
             </div>
-            <div className='space-y-4 lg:grid-cols-2 sm:gap-6 xl:gap-2 lg:space-y-0'>
-
+            <div className='grid gap-6 sm:grid-cols-1 md:grid-cols-2'>
               <PriceComponent price={'500'} tipoPago={'Un unico Pago'} title={'Un solo pago'} description={'Pague una vez y olvidece'} />
-              <Button/>
               <PriceComponent price={'500'} tipoPago={'Un unico Pago'} title={'Un solo pago'} description={'Pague una vez y olvidece'} />
             </div>
-
           </div>
         </section>
       </div>
