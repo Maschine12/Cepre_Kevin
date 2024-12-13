@@ -1,7 +1,6 @@
 "use client";
 import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Input from "../ui/input";
 import Label from "../ui/label";
@@ -14,24 +13,24 @@ function Signup() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
+            // Recoger los datos del formulario
             const formData = new FormData(event.currentTarget);
-            const signupResponse = await axios.post("/api/auth/signup", {
+            const signupResponse = await axios.post("/api/register", {
                 dni: formData.get("dni"),
                 email: formData.get("email"),
                 password: formData.get("password"),
-                role: formData.get("role"),
-            });
-            const res = await signIn("credentials", {
-                email: signupResponse.data.email,
-                password: formData.get("password"),
-                redirect: false,
             });
 
-            if (res?.ok) return router.push("/dashboard/profile");
+            // Si el registro fue exitoso, redirigir al perfil
+            router.push("/dashboard/profile");
+
         } catch (error) {
+            // Manejar errores en el proceso de registro
             if (error instanceof AxiosError) {
                 const errorMessage = error.response?.data.message;
                 setError(errorMessage);
+            } else {
+                setError("Error al procesar la solicitud.");
             }
         }
     };
@@ -41,12 +40,20 @@ function Signup() {
             <form onSubmit={handleSubmit} className="px-8 py-10 w-4/12 ">
                 {error && <div className="bg-red-500 opacity-50 text-white p-2 mb-2">{error}</div>}
                 <h1 className="text-4xl font-bold mb-7 text-center">Registro</h1>
+
+                {/* Input para DNI */}
                 <Label>DNI</Label>
                 <Input placeholder="12345678" name="dni" required />
+
+                {/* Input para Email */}
                 <Label>Correo Electrónico</Label>
                 <Input placeholder="ejemplo@gmail.com" name="email" required />
+
+                {/* Input para Contraseña */}
                 <Label>Contraseña</Label>
                 <Input placeholder="********" name="password" type="password" required />
+
+                {/* Botón de Envío */}
                 <div className="text-center">
                     <Button type="submit" className="mt-3 w-full">Registrarme</Button>
                 </div>
