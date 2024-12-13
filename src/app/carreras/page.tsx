@@ -1,11 +1,9 @@
 import React from 'react'
-
+import Signup from "@/components/registro/registroInicial"
 function CarrerasPage() {
   return (
     <div>CarrerasPage
-      <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 bg-red-200'>
-        
-      </div>
+      <Signup />
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import { Schema, model, models, Document } from "mongoose";
 
 interface IUser extends Document {
-  username: string;
+  dni: string;
+  email: string;
   password: string;
   role: "admin" | "secretaria" | "estudiante";
   isActive: boolean;
@@ -11,10 +12,15 @@ interface IUser extends Document {
 
 const UserSchema = new Schema<IUser>(
   {
-    username: {
+    dni: {
       type: String,
       unique: true,
-      required: [true, "Username es requerido"],
+      required: [true, "El DNI es requerido"],
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, "Email es requerido"],
     },
     password: {
       type: String,
@@ -24,7 +30,6 @@ const UserSchema = new Schema<IUser>(
     role: {
       type: String,
       enum: ["admin", "secretaria", "estudiante"],
-      required: [true, "El rol es requerido"],
       default: "estudiante",
     },
     isActive: {

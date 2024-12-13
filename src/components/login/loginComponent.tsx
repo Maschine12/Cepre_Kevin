@@ -7,9 +7,6 @@ import Button from "../ui/buton";
 import Label from "../ui/label";
 import Input from "../ui/input";
 
-const handleReload = () => {
-    window.location.reload();
-};
 function LoginComponent() {
     const [error, setError] = useState("");
     const router = useRouter();
@@ -24,9 +21,14 @@ function LoginComponent() {
             redirect: false,
         });
 
-        if (res?.error) setError(res.error as string);
+        if (res?.error) {
+            setError(res.error as string);
+            return;
+        }
 
-        if (res?.ok) router.push("/dashboard");
+        if (res?.ok) {
+            router.replace("/dashboard"); // Redirigir al dashboard
+        }
     };
 
     return (
@@ -53,4 +55,5 @@ function LoginComponent() {
         </div>
     );
 }
+
 export default LoginComponent;

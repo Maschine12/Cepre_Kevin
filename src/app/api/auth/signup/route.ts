@@ -8,27 +8,27 @@ export async function POST(request: Request) {
   try {
     await connectDB();
 
-    const { email, password, role = "estudiante", ...additionalData } = await request.json();
+    const { dni, email, password, role = "estudiante" } = await request.json();
 
-    if (!email || !password) {
+    if (!dni || !email || !password) {
       return NextResponse.json(
-        { message: "Email, and password are required" },
+        { message: "DNI, email y password son requeridos" },
         { status: 400 }
       );
     }
 
     if (password.length < 6) {
       return NextResponse.json(
-        { message: "Password must be at least 6 characters" },
+        { message: "La contraseña debe tener al menos 6 caracteres" },
         { status: 400 }
       );
     }
 
-    const userFound = await User.findOne({ email});
+    const userFound = await User.findOne({ email });
 
     if (userFound) {
       return NextResponse.json(
-        { message: "Email already exists" },
+        { message: "El email ya existe" },
         { status: 409 }
       );
     }
@@ -36,6 +36,7 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const user = new User({
+      dni,
       email,
       password: hashedPassword,
       role,
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
+        dni,
         email,
         role,
         createdAt: savedUser.createdAt,
