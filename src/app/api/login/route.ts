@@ -59,6 +59,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     } catch (error) {
         console.error('Error en el servidor:', error);  // Log de error para depuración
-        res.status(500).json({ message: 'Error en el servidor', error: error.message || error });
+        res.status(500).json({ message: 'Error en el servidor'});
     }
 }

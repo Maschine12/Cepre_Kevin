@@ -1,13 +1,15 @@
-import React, { FormEvent, useState, useEffect } from "react";
+"use client";
+
+import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/buton";
 import Label from "../ui/label";
 import Input from "../ui/input";
 
 function LoginComponent() {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
@@ -28,13 +30,13 @@ function LoginComponent() {
         }
 
         setLoading(true);
-        setError('');
+        setError("");
 
         try {
-            const res = await fetch('http://localhost:3000/api/login', {
-                method: 'POST',
+            const res = await fetch("http://localhost:3000/api/login", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email, password }),
             });
@@ -48,7 +50,7 @@ function LoginComponent() {
             }
 
             // Guardar el token en localStorage
-            localStorage.setItem('authToken', data.token);
+            localStorage.setItem("authToken", data.token);
 
             // Redirigir a Dashboard
             router.replace("/dashboard");
@@ -60,8 +62,8 @@ function LoginComponent() {
 
     useEffect(() => {
         // Limpiar los valores de los campos en caso de un error previo
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
     }, []);
 
     return (
@@ -111,7 +113,7 @@ function LoginComponent() {
                         className="mt-3"
                         disabled={loading || !email || !password || !isValidEmail(email)}
                     >
-                        {loading ? 'Cargando...' : 'Ingresar'}
+                        {loading ? "Cargando..." : "Ingresar"}
                     </Button>
                 </form>
             </div>

@@ -1,4 +1,3 @@
-import Providers from "./Providers";
 import Navbar from "../components/server/sesion";
 import "./globals.css";
 
@@ -15,12 +14,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Providers>
-          <Navbar />
-          <div className="bg-[#B4C5E4]">
-            {children}
-          </div>
-        </Providers>
+        <Navbar />
+        <div className="bg-[#B4C5E4]">
+          {children}
+        </div>
       </body>
     </html>
   );
