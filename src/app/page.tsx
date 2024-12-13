@@ -12,7 +12,7 @@ function HomePage() {
           <div className="flex flex-col w-full md:w-7/12 lg:w-6/12">
             <div className="flex flex-col items-center title-none bg-slate-200 p-5 rounded-3xl bg-opacity-80">
               <h1 className="text-7xl text-center font-semibold xl:mt-0">
-                ¡Bienvenido al Cepre de la Unajma!
+                ¡Bienvenido al Cepre de la Unajma 2025!
               </h1>
               <p className="slogan text-center p-5 text-4xl">
                 ¿Listo para empezar una nueva etapa?
