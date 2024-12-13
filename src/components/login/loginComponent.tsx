@@ -27,7 +27,9 @@ function LoginComponent() {
         }
 
         if (res?.ok) {
+            //cuando res sea ok xde ;-; podemos agregar el reload de page aqui ;-;
             router.replace("/dashboard"); // Redirigir al dashboard
+            router.refresh()
         }
     };
 

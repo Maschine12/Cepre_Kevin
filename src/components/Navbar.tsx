@@ -53,7 +53,7 @@ function Navbar({ session }: { session: any }) {
               <>
                 <NavLink href={"/dashboard"} label={"Dashboard"} />
                 <NavLink href={"/dashboard/profile"} label={"Salir"} />
-                <NavLink href={"/plan"} label={"Precios"} />
+                <NavLink href={"/precios"} label={"Precios"} />
                 <NavLink href={"/cursos"} label={"Cursos"} />
                 <NavLink href={"/horario"} label={"Horario"} />
                 <UserMenu email={session.user?.email} image={session.user?.image} />

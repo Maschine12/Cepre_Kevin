@@ -6,7 +6,7 @@ interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
 
 function Label({ children, ...props }: Props) {
     return (
-        <label className="block text-gray-800 p-2" {...props}>
+        <label className=" text-gray-800 text-xl my-3" {...props}>
             {children}
         </label>
     );

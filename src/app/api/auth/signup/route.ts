@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     await connectDB();
 
-    const { dni, email, password, role = "estudiante" } = await request.json();
+    const { dni, email, password } = await request.json();
 
     if (!dni || !email || !password) {
       return NextResponse.json(
@@ -16,7 +16,14 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
+    const userFoundEmail = await User.findOne({ email });
+    const userFoundDni = await User.findOne({ dni });
+    if (userFoundDni) {
+      return NextResponse.json(
+        { message: "El dni ya existe" },
+        { status: 409 }
+      )
+    }
     if (password.length < 6) {
       return NextResponse.json(
         { message: "La contraseña debe tener al menos 6 caracteres" },
@@ -24,9 +31,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const userFound = await User.findOne({ email });
-
-    if (userFound) {
+    if (userFoundEmail) {
       return NextResponse.json(
         { message: "El email ya existe" },
         { status: 409 }
@@ -39,7 +44,6 @@ export async function POST(request: Request) {
       dni,
       email,
       password: hashedPassword,
-      role,
     });
 
     const savedUser = await user.save();
@@ -48,7 +52,6 @@ export async function POST(request: Request) {
       {
         dni,
         email,
-        role,
         createdAt: savedUser.createdAt,
         updatedAt: savedUser.updatedAt,
       },

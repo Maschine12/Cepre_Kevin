@@ -19,21 +19,21 @@ const handler = NextAuth({
           email: credentials?.email,
         }).select("+password");
 
-        if (!userFound) throw new Error("Invalid credentials");
+        if (!userFound) throw new Error("Credenciales Incorrectas");
 
         const passwordMatch = await bcrypt.compare(
           credentials!.password,
           userFound.password
         );
 
-        if (!passwordMatch) throw new Error("Invalid credentials");
+        if (!passwordMatch) throw new Error("Credenciales Incorrectas");
 
         return userFound;
       },
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "/dashboard",
   },
   session: {
     strategy: "jwt",
