@@ -6,7 +6,7 @@ function CarrerasPage() {
       <div>
         CarrerasPage
       </div>
-      <Signup />
+      
     </div>
 
   )

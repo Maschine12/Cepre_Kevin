@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { MONGODB_URI } = process.env;
 
 if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI must be defined");
+  throw new Error("MONGODB_URI no esta definido");
 }
 
 export const connectDB = async () => {
